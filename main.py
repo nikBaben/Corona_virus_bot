@@ -14,7 +14,6 @@ def start(message):
     markup_inline = types.InlineKeyboardMarkup(row_width=2).add(item_about)
     item_Russia = b(text='Ru', callback_data='Ru')
     item_German = b(text='De', callback_data='De')
-    item_Ukraine = b(text='Ua', callback_data='Ua')
     item_Chehia = b(text='Cz', callback_data='Cz')
     item_france = b(text='Fr', callback_data='Fr')
     item_Italy = b(text='It', callback_data='It')
@@ -43,13 +42,7 @@ def hello(call):
             f"<u>Данные по Германии</u>🇩🇪\n🌡<b>Заболевших: </b>{location[0]['latest']['confirmed']}\n☠️<strong>Погибли:</strong>{location[0]['latest']['deaths']}")
 
         bot.send_message(call.message.chat.id, final_message, parse_mode= 'html')
-
-    elif call.data == "Ua":
-        location = covid19.getLocationByCountryCode("UA")
-        final_message = (
-            f"</u>Данные по Украине</u>🇺🇦\n🌡<b>Заболевших: </b>{location[0]['latest']['confirmed']}\n☠️<strong>Погибли: </strong>{location[0]['latest']['deaths']}")
-
-        bot.send_message(call.message.chat.id, final_message, parse_mode='html')
+            
     elif call.data == "Cz":
         location = covid19.getLocationByCountryCode("CZ")
         final_message = (
@@ -160,20 +153,7 @@ def mess(message):
         bot.send_message(message.chat.id, final_message, parse_mode='html')
 
 
-    elif get_message_bot == 'украина':
-        location = covid19.getLocationByCountryCode("UA")
-        date = location[0]['last_updated'].split("T")
-        time = date[1].split(".")
-        final_message = f"<u>Данные по Украине:</u>\n" \
-                        f"👨‍👩‍👧‍👧<b>Население: </b>{location[0]['country_population']}\n⏳<b>Последнее обновление: </b>{date[0]} {time[0]}\n🌡<b>Заболевших: </b>{location[0]['latest']['confirmed']:,}\n☠️<b>Сметрей: </b>{location[0]['latest']['deaths']:,}"
-        bot.send_message(message.chat.id, final_message, parse_mode='html')
-
-
-
-
-
-
-
+  
 
 
 while True:  
